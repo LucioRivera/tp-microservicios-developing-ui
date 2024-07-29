@@ -1,9 +1,11 @@
-import './globals.css'
+import '../globals.css'
 import DefaultTextInput from '../../components/DefaultTextInput'
 import CircularButton from '../../components/CircularButton'
 import DefaultRowCliente from '../../components/Clientes/DefaultRowCliente'
 import DefaultRowHeadCliente from '../../components/Clientes/DefaultRowHeadCliente'
-import { useState } from 'react';
+import { useEffect, useState, useRef} from 'react'
+import DisplayAddCliente from './DisplayAddCliente'
+import DisplayModifyCliente from './DisplayModifyCliente'
 
 export default function TableContainerCliente(){
     function getClientes(){ 
@@ -17,8 +19,34 @@ export default function TableContainerCliente(){
         -add (agregar cliente)
         -delete (eliminar cliente)
         -modify (modificar cliente)
+		-assign (asignar cliente)
     */
     const [action, setAction] = useState("initial");
+
+	const addDialog = useRef(null);
+	const deleteDialog = (null);
+	const modifyDialog = useRef(null);
+	const assignDialog = (null);
+
+	useEffect(() => {
+		console.log(addDialog.current);
+		if (addDialog.current) {
+			if (action === "add") {
+				addDialog.current.showModal();
+			}
+			else {
+				addDialog.current.close();
+			}
+
+			if (action === "modify") {
+				modifyDialog.current.showModal();
+			}
+			else {
+				modifyDialog.current.close();
+			}
+		}
+
+	}, [action]);
 
     return(
 		<div className="m-auto min-h-screen">
@@ -30,11 +58,11 @@ export default function TableContainerCliente(){
 				<div className="flex justify-between nowrap">
 					<div className="flex w-2/4 justify-around items-end nowrap space-x-7">
 						<DefaultTextInput label="Nombre cliente" id="nombre_cliente"/> 
-						<CircularButton text="Buscar" onClick={() => alert('FUNCIONOOO')}/>
+						<CircularButton text="Buscar"/>
 					</div>
 
 					<div className="mt-auto">
-						<CircularButton text="Dar de Alta"/>
+						<CircularButton text="Dar de Alta" onClick={() => setAction("add")}/>
 					</div>
 				</div>
 
@@ -44,32 +72,16 @@ export default function TableContainerCliente(){
 							<DefaultRowHeadCliente nombre='Nombre' cuit='CUIT/CUIL' correo='Correo electrónico' maximo_descubierto='Máximo descubierto' obras_disponibles='Obras disponibles' acciones='Administrar'/> 
 						</thead>
 						<tbody>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12}/>
+							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
+							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
+							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
+							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
+							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
 						</tbody>
 					</table>
 				</div>
+				<DisplayAddCliente ref={addDialog} input_setAction={setAction} input_setClientes={setClientes}/>
+				<DisplayModifyCliente ref={modifyDialog} input_setAction={setAction} input_setClientes={setClientes}/>
 			</div>
 		</div>
     );

@@ -1,4 +1,4 @@
-import './globals.css'
+import '../globals.css'
 
 export default function DefaultRowHeadCliente ({nombre, cuit, correo, maximo_descubierto, obras_disponibles, acciones}) {
 	return (
