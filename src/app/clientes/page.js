@@ -1,3 +1,4 @@
+'use client'
 import DefaultTextInput from '../../components/DefaultTextInput'
 import CircularButton from '../../components/CircularButton'
 import DefaultRowCliente from '../../components/Clientes/DefaultRowCliente'
@@ -15,7 +16,7 @@ export default function Page() {
 					<div className="flex justify-between nowrap">
 						<div className="flex w-2/4 justify-around items-end nowrap space-x-7">
 							<DefaultTextInput label="Nombre cliente" id="nombre_cliente"/> 
-							<CircularButton text="Buscar"/>
+							<CircularButton text="Buscar" onClick={() => alert('FUNCIONOOO')}/>
 						</div>
 
 						<div className="mt-auto">
@@ -56,8 +57,6 @@ export default function Page() {
 						</table>
 					</div>
 				</div>
-				<dialog>HOLAAAA</dialog>
-
 			</div>
 		</div>
 	);
