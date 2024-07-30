@@ -1,6 +1,6 @@
 import './globals.css'
 
-export default function DefaultTextInput({label, id, placeholder, enabled=true}) {
+export default function DefaultTextInput({label, id, placeholder="", enabled=true}) {
 
   return(
     <div className="w-full box-border rounded-lg">

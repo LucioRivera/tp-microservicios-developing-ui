@@ -1,15 +1,30 @@
+"use client"
 import '../globals.css'
 import DefaultTextInput from '../../components/DefaultTextInput'
 import CircularButton from '../../components/CircularButton'
 import DefaultRowCliente from '../../components/Clientes/DefaultRowCliente'
 import DefaultRowHeadCliente from '../../components/Clientes/DefaultRowHeadCliente'
 import { useEffect, useState, useRef} from 'react'
-import DisplayAddCliente from './DisplayAddCliente'
+import DisplayAddCliente from './Add/DisplayAddCliente'
 import DisplayModifyCliente from './DisplayModifyCliente'
 
 export default function TableContainerCliente(){
-    function getClientes(){ 
-        //Devuelve un arreglo de cientes
+    async function getClientes(){ 
+		const options = {
+			mode: 'no-cors',
+			method: 'GET',
+			headers: {
+			'Content-Type': 'application/json'
+			}
+		};
+
+		const response = await fetch('http://localhost:6080/api/clientes/', options);
+		console.log(response);
+		const clientes = [];
+		for (let cliente of response) {
+			clientes.push(await cliente.json());
+		}
+		return clientes;
     }
 
     const [clientes, setClientes] = useState(getClientes());
@@ -22,14 +37,15 @@ export default function TableContainerCliente(){
 		-assign (asignar cliente)
     */
     const [action, setAction] = useState("initial");
-
 	const addDialog = useRef(null);
 	const deleteDialog = (null);
 	const modifyDialog = useRef(null);
 	const assignDialog = (null);
 
 	useEffect(() => {
-		console.log(addDialog.current);
+		console.log('Use Effect');
+		if (action === "initial") setClientes(getClientes());
+
 		if (addDialog.current) {
 			if (action === "add") {
 				addDialog.current.showModal();
@@ -80,7 +96,7 @@ export default function TableContainerCliente(){
 						</tbody>
 					</table>
 				</div>
-				<DisplayAddCliente ref={addDialog} input_setAction={setAction} input_setClientes={setClientes}/>
+				<DisplayAddCliente ref={addDialog} input_setAction={setAction}/>
 				<DisplayModifyCliente ref={modifyDialog} input_setAction={setAction} input_setClientes={setClientes}/>
 			</div>
 		</div>
