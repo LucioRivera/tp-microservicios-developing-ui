@@ -10,21 +10,18 @@ import DisplayModifyCliente from './DisplayModifyCliente'
 
 export default function TableContainerCliente(){
     async function getClientes(){ 
-		const options = {
+		/*const options = {
 			mode: 'no-cors',
 			method: 'GET',
 			headers: {
 			'Content-Type': 'application/json'
 			}
-		};
+		};*/
 
-		const response = await fetch('http://localhost:6080/api/clientes/', options);
-		console.log(response);
-		const clientes = [];
-		for (let cliente of response) {
-			clientes.push(await cliente.json());
-		}
-		return clientes;
+		const response = await fetch('http://localhost:6080/api/clientes/');
+		
+		const json = await response.json();
+		console.log(JSON.stringify(json));
     }
 
     const [clientes, setClientes] = useState(getClientes());
