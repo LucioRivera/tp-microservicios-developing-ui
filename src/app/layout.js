@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className='h-full font-sans font-medium'>
-      <body>
+    <html lang="en" className='min-h-full font-sans font-medium'>
+      <body className="overflow-y-hidden min-h-full">
 		<div className='bg-white border-gray-200 dark:bg-gray-900o h-6 block h-auto'> 
 			<div className='max-w flex flex-wrap items-center justify-around py-4 shadow-md'>
 				<Link href='https://www.frsf.utn.edu.ar'>
