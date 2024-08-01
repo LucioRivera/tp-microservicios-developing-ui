@@ -18,9 +18,15 @@ export default function RootLayout({ children }) {
 					</div>
 				</Link>
 				<div className='w-1/4 flex flex-nowrap item-center justify-around space-x-9'>
-					<CircularButton text='PedidosXD'/>
-					<CircularButton text='Clientes'/>
-					<CircularButton text='Productos'/>
+					<Link href='/pedidos'>
+						<CircularButton text='Pedidos'/>
+					</Link>
+					<Link href='/clientes'>
+						<CircularButton text='Clientes'/>
+					</Link>
+					<Link href='/productos'>
+						<CircularButton text='Productos'/>
+					</Link> 
 				</div>
 			</div>
 		</div>
