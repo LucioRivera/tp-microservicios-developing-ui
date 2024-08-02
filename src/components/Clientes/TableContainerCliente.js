@@ -11,11 +11,16 @@ import DisplayDeleteCliente from './Delete/DisplayDeleteCliente'
 
 export default function TableContainerCliente(){
     async function getClientes(){ 
-		console.log('Fetchie');
+		console.log('Fetching...');
+
 		const response = await fetch('http://localhost/clientes/api/clientes');
-		
+		if (!response.ok) {
+			throw new Error('Falla Fetch'); 
+		}
 		const json = await response.json();
 		console.log(json);
+
+		setClientes(json);
     }
 
     const [clientes, setClientes] = useState();
@@ -34,13 +39,13 @@ export default function TableContainerCliente(){
 	const assignDialog = useRef(null);
 	
 	useEffect(() => {
-		setClientes(getClientes());
+		getClientes();
 	}, []);
 
 	useEffect(() => {
 		console.log(action);
 		console.log('Use Effect');
-		if (action === "initial") setClientes(getClientes());
+		if (action === "initial") getClientes();
 
 		if (addDialog.current) {
 			if (action === "add") {
@@ -95,36 +100,16 @@ export default function TableContainerCliente(){
 							<DefaultRowHeadCliente nombre='Nombre' cuit='CUIT/CUIL' correo='Correo electrónico' maximo_descubierto='Máximo descubierto' obras_disponibles='Obras disponibles' acciones='Administrar'/> 
 						</thead>
 						<tbody>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
-							<DefaultRowCliente nombre='Gervasio Pita' cuit='20-121212-32' correo='luciorivera2000@gmail.com' maximo_descubierto={1212} obras_disponibles={12} input_setAction={setAction}/>
+							{console.log(clientes)}
+							{clientes?.map((cliente) => (
+								<DefaultRowCliente 
+								key={cliente.id}
+								nombre={cliente.nombre} 
+								cuit={cliente.cuit}
+								correo={cliente.correoElectronico}
+								maximo_descubierto={cliente.maximoDescubierto}
+								obras_disponibles={cliente.cantObrasDisponibles}/>
+							))}
 						</tbody>
 					</table>
 				</div>
