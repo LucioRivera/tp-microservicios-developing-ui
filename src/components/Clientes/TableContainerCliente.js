@@ -11,21 +11,14 @@ import DisplayDeleteCliente from './Delete/DisplayDeleteCliente'
 
 export default function TableContainerCliente(){
     async function getClientes(){ 
-		const options = {
-			mode: 'no-cors',
-			method: 'GET',
-			headers: {
-			'Content-Type': 'application/json'
-			}
-		}; 
-
+		console.log('Fetchie');
 		const response = await fetch('http://localhost/clientes/api/clientes');
 		
 		const json = await response.json();
-		console.log(JSON.stringify(json));
+		console.log(json);
     }
 
-    const [clientes, setClientes] = useState(getClientes());
+    const [clientes, setClientes] = useState();
     /*
     action puede ser:
         -initial (no se hace nada, primera vez o se cancela la accion anterior)
@@ -39,8 +32,13 @@ export default function TableContainerCliente(){
 	const deleteDialog = useRef(null);
 	const modifyDialog = useRef(null);
 	const assignDialog = useRef(null);
+	
+	useEffect(() => {
+		setClientes(getClientes());
+	}, []);
 
 	useEffect(() => {
+		console.log(action);
 		console.log('Use Effect');
 		if (action === "initial") setClientes(getClientes());
 
@@ -51,23 +49,27 @@ export default function TableContainerCliente(){
 			else {
 				addDialog.current.close();
 			}
+		}
 
+		if (modifyDialog.current) {
 			if (action === "modify") {
 				modifyDialog.current.showModal();
 			}
 			else {
 				modifyDialog.current.close();
 			}
-
+		}
+		
+		if (deleteDialog.current) {
 			if (action === "delete") {
 				deleteDialog.current.showModal();
 			}
 			else {
 				deleteDialog.current.close();
 			}
-		}
 
-	}, [action]);
+		}
+	}, [action, addDialog, modifyDialog, deleteDialog, assignDialog]);
 
     return(
 		<div className="m-auto min-h-full">
@@ -89,7 +91,7 @@ export default function TableContainerCliente(){
 
 				<div className="mt-4 overflow-y-auto max-h-[56vh]">
 					<table className="w-full bg-slate-100">
-						<thead class="bg-grey-50 border-b-2 border-grey-200">
+						<thead className="bg-grey-50 border-b-2 border-grey-200">
 							<DefaultRowHeadCliente nombre='Nombre' cuit='CUIT/CUIL' correo='Correo electrónico' maximo_descubierto='Máximo descubierto' obras_disponibles='Obras disponibles' acciones='Administrar'/> 
 						</thead>
 						<tbody>
