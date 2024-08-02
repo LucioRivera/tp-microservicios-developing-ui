@@ -19,7 +19,7 @@ export default function TableContainerCliente(){
 			}
 		}; 
 
-		const response = await fetch('http://localhost:70/api/clientes');
+		const response = await fetch('http://localhost/clientes/api/clientes');
 		
 		const json = await response.json();
 		console.log(JSON.stringify(json));
