@@ -11,8 +11,8 @@ import DisplayDeleteCliente from './Delete/DisplayDeleteCliente'
 
 export default function TableContainerCliente(){
     async function getClientes(){ 
-		console.log('Fetching...');
-
+		console.log('Fetching all...');
+		
 		const response = await fetch('http://localhost/clientes/api/clientes');
 		if (!response.ok) {
 			throw new Error('Falla Fetch'); 
@@ -24,6 +24,7 @@ export default function TableContainerCliente(){
     }
 
     const [clientes, setClientes] = useState();
+	const [clienteTarget, setClienteTarget] = useState();
     /*
     action puede ser:
         -initial (no se hace nada, primera vez o se cancela la accion anterior)
@@ -100,22 +101,20 @@ export default function TableContainerCliente(){
 							<DefaultRowHeadCliente nombre='Nombre' cuit='CUIT/CUIL' correo='Correo electrónico' maximo_descubierto='Máximo descubierto' obras_disponibles='Obras disponibles' acciones='Administrar'/> 
 						</thead>
 						<tbody>
-							{console.log(clientes)}
 							{clientes?.map((cliente) => (
 								<DefaultRowCliente 
-								key={cliente.id}
-								nombre={cliente.nombre} 
-								cuit={cliente.cuit}
-								correo={cliente.correoElectronico}
-								maximo_descubierto={cliente.maximoDescubierto}
-								obras_disponibles={cliente.cantObrasDisponibles}/>
+								input_setAction={setAction}
+								cliente={cliente}
+								setClienteTarget={setClienteTarget}
+								key={cliente.id}/>
 							))}
 						</tbody>
 					</table>
 				</div>
 				<DisplayAddCliente ref={addDialog} input_setAction={setAction}/>
 				<DisplayModifyCliente ref={modifyDialog} input_setAction={setAction} input_setClientes={setClientes}/>
-				<DisplayDeleteCliente ref={deleteDialog} input_setAction={setAction} input_setClientes={setClientes}/>
+				{clienteTarget !== undefined ? 
+				<DisplayDeleteCliente ref={deleteDialog} input_setAction={setAction} clienteTarget={clienteTarget}/> : null}
 			</div>
 		</div>
     );

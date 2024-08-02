@@ -13,17 +13,14 @@ export default function FormAddCliente({input_setAction}) {
 
         const options = {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-             },
-             mode: 'cors',
-             body: JSON.stringify(payload)
-            };
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload)
+        };
         console.log(options);
 
         try {
             await fetch('http://localhost/clientes/api/clientes', options);
-            console.log('POST exitoso');
+            console.log('Añadir exitoso');
         } catch(error) {
             console.error(error.message)
         } finally {
@@ -44,7 +41,7 @@ export default function FormAddCliente({input_setAction}) {
                     <DefaultTextInput label="Maximo Descubierto" name="maximoDescubierto" type="number"/>
                 </div>
 
-                <div className="mb-7 mt-2 mx-1/2 flex items-center justify-around space-x-7">
+                <div className="mb-7 mt-9 mx-1/2 flex items-center justify-around space-x-7">
                     <CircularButton type="submit" text="Aceptar"/>
                     <CircularButton onClick={() => input_setAction('initial')} text="Cerrar"/>
                 </div>
