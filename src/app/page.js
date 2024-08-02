@@ -1,10 +1,14 @@
 export default function Page() {
   return(
-    <div className="flex flex-col justify-evenly items-center min-h-screen">
-      <div className="flex flex-col justify-evenly items-center mb-40">
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <div className="h-[36em] flex flex-col justify-around items-center ">
         <img className="h-96" src="https://iconape.com/wp-content/png_logo_vector/utn.png"/>
-          <h1 className="mt-5">Trabajo Practico Nubes</h1>
-          <h3 className="my-3">Integrantes Notables</h3>
+        <div>
+          <p className="text-center text-2xl underscore">Trabajo Practico Nubes</p>
+          <p className="text-center mt-3 italic text-slate-500">Lomazzi Fernando Sebastián</p>
+          <p className="text-center mt-3 italic text-slate-500">Pairett Ribotta Lucas José</p>
+          <p className="text-center mt-3 italic text-slate-500">Rivera Lucio</p>
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import '../../globals.css'
 import DefaultTextInput from '../../DefaultTextInput'
 import CircularButton from '../../CircularButton';
 
-export default function FormAddCliente({input_setAction}) {
+export default function FormModifyCliente({input_setAction, clienteTarget}) {
     async function submitForm(e) {
         e.preventDefault();
 
@@ -12,15 +12,16 @@ export default function FormAddCliente({input_setAction}) {
         console.log(payload);
 
         const options = {
-            method: 'POST',
+            method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
         };
         console.log(options);
 
         try {
-            await fetch('http://localhost/clientes/api/clientes', options);
-            console.log('Añadir exitoso');
+            const path = `http://localhost/clientes/api/clientes/${clienteTarget.id}`;
+            await fetch(path, options);
+            console.log('Modificar exitoso');
         } catch(error) {
             console.error(error.message)
         } finally {
@@ -32,13 +33,13 @@ export default function FormAddCliente({input_setAction}) {
         <div className="px-24 pb-12 pt-9">
             <form onSubmit={submitForm}> 
                 <div className="flex items-center justify-around space-x-28">
-                    <DefaultTextInput label="Nombre" name="nombre"/>
-                    <DefaultTextInput label="Email" name="correoElectronico"/>
+                    <DefaultTextInput label="Nombre" name="nombre" defaultValue={clienteTarget.nombre}/>
+                    <DefaultTextInput label="Email" name="correoElectronico" defaultValue={clienteTarget.correoElectronico}/>
                 </div>
 
                 <div className="mt-7 flex items-center justify-around space-x-28">
-                    <DefaultTextInput label="CUIT" name="cuit"/>
-                    <DefaultTextInput label="Maximo Descubierto" name="maximoDescubierto"/>
+                    <DefaultTextInput label="CUIT" name="cuit" defaultValue={clienteTarget.cuit}/>
+                    <DefaultTextInput label="Maximo Descubierto" name="maximoDescubierto" defaultValue={clienteTarget.maximoDescubierto}/>
                 </div>
 
                 <div className="mb-7 mt-9 mx-1/2 flex items-center justify-around space-x-7">

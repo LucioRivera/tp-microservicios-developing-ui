@@ -5,6 +5,11 @@ export default function DefaultRowCliente({input_setAction, cliente, setClienteT
 		setClienteTarget(cliente);
 		input_setAction('delete');
 	}
+	
+	function selectedModifyCliente() {
+		setClienteTarget(cliente);
+		input_setAction('modify');
+	}
 
 	return (
 		<tr>
@@ -15,7 +20,7 @@ export default function DefaultRowCliente({input_setAction, cliente, setClienteT
 			<td className="p-3 font-normal tracking-wide text-left">{cliente.cantObrasDisponibles}</td>
 			<td>
 				<div className="flex p-3 text-gray-500 text-sm items-center justify-between italic underline">
-					<p className="hover:text-blue-500 cursor-pointer" onClick={() => input_setAction('modify')}>Modificar</p>
+					<p className="hover:text-blue-500 cursor-pointer" onClick={selectedModifyCliente}>Modificar</p>
 					<p className="hover:text-blue-500 cursor-pointer" onClick={selectedDeleteCliente}>Eliminar</p>
 					<p className="hover:text-blue-500 cursor-pointer" onClick={() => input_setAction('assign')}>Asignar Obra</p>
 				</div>

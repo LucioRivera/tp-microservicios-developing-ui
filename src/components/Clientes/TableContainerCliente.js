@@ -6,7 +6,7 @@ import DefaultRowCliente from '../../components/Clientes/DefaultRowCliente'
 import DefaultRowHeadCliente from '../../components/Clientes/DefaultRowHeadCliente'
 import { useEffect, useState, useRef} from 'react'
 import DisplayAddCliente from './Add/DisplayAddCliente'
-import DisplayModifyCliente from './DisplayModifyCliente'
+import DisplayModifyCliente from './Modify/DisplayModifyCliente'
 import DisplayDeleteCliente from './Delete/DisplayDeleteCliente'
 
 export default function TableContainerCliente(){
@@ -112,9 +112,8 @@ export default function TableContainerCliente(){
 					</table>
 				</div>
 				<DisplayAddCliente ref={addDialog} input_setAction={setAction}/>
-				<DisplayModifyCliente ref={modifyDialog} input_setAction={setAction} input_setClientes={setClientes}/>
-				{clienteTarget !== undefined ? 
-				<DisplayDeleteCliente ref={deleteDialog} input_setAction={setAction} clienteTarget={clienteTarget}/> : null}
+				{clienteTarget !== undefined ?  <DisplayModifyCliente ref={modifyDialog} input_setAction={setAction} clienteTarget={clienteTarget}/> : null}
+				{clienteTarget !== undefined ?  <DisplayDeleteCliente ref={deleteDialog} input_setAction={setAction} clienteTarget={clienteTarget}/> : null}
 			</div>
 		</div>
     );
