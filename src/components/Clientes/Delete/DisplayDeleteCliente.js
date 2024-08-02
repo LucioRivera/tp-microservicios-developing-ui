@@ -6,19 +6,19 @@ const DisplayDeleteCliente = forwardRef(({input_setAction, clienteTarget}, ref) 
     async function submitAction() {
         const options = {
             method: 'DELETE',
+            mode: 'cors',
             headers: {'Content-Type': 'application/json'},
         };
         console.log(options);
         
         try {
             const path = `http://localhost/clientes/api/clientes/${clienteTarget.id}`;
-            console.log(path);
             await fetch(path, options);
             console.log('Eliminación exitosa');
         } catch(error) {
             console.error(error.message);
         } finally {
-            input_setAction('intial');
+            input_setAction('initial');
         }
     }
 

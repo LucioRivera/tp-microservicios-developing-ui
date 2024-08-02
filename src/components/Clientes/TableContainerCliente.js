@@ -83,7 +83,7 @@ export default function TableContainerCliente(){
 				<p className="w-1/2 m-auto text-center text-3xl font-semibold italic"> Gestion de Clientes </p>
 			</div>
 
-			<div className="mx-44 mb-20 shadow-xl p-10 max-h-[70vh]"> 
+			<div className="mx-44 mdow-xl p-10 max-h-[70vh]"> 
 				<div className="flex justify-between">
 					<div className="flex w-2/4 justify-around items-end nowrap space-x-7">
 						<DefaultTextInput label="Nombre cliente" id="nombre_cliente"/> 
