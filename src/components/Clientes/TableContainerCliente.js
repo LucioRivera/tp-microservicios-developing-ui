@@ -7,6 +7,7 @@ import DefaultRowHeadCliente from '../../components/Clientes/DefaultRowHeadClien
 import { useEffect, useState, useRef} from 'react'
 import DisplayAddCliente from './Add/DisplayAddCliente'
 import DisplayModifyCliente from './DisplayModifyCliente'
+import DisplayDeleteCliente from './Delete/DisplayDeleteCliente'
 
 export default function TableContainerCliente(){
     async function getClientes(){ 
@@ -35,9 +36,9 @@ export default function TableContainerCliente(){
     */
     const [action, setAction] = useState("initial");
 	const addDialog = useRef(null);
-	const deleteDialog = (null);
+	const deleteDialog = useRef(null);
 	const modifyDialog = useRef(null);
-	const assignDialog = (null);
+	const assignDialog = useRef(null);
 
 	useEffect(() => {
 		console.log('Use Effect');
@@ -56,6 +57,13 @@ export default function TableContainerCliente(){
 			}
 			else {
 				modifyDialog.current.close();
+			}
+
+			if (action === "delete") {
+				deleteDialog.current.showModal();
+			}
+			else {
+				deleteDialog.current.close();
 			}
 		}
 
@@ -120,6 +128,7 @@ export default function TableContainerCliente(){
 				</div>
 				<DisplayAddCliente ref={addDialog} input_setAction={setAction}/>
 				<DisplayModifyCliente ref={modifyDialog} input_setAction={setAction} input_setClientes={setClientes}/>
+				<DisplayDeleteCliente ref={deleteDialog} input_setAction={setAction} input_setClientes={setClientes}/>
 			</div>
 		</div>
     );

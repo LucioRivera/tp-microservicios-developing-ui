@@ -11,8 +11,8 @@ export default function DefaultRowCliente({nombre, cuit, correo, maximo_descubie
 			<td>
 				<div className="flex p-3 text-gray-500 text-sm items-center justify-between italic underline">
 					<p className="hover:text-blue-500 cursor-pointer" onClick={() => input_setAction('modify')}>Modificar</p>
-					<p className="hover:text-blue-500 cursor-pointer">Eliminar</p>
-					<p className="hover:text-blue-500 cursor-pointer">Asignar Obra</p>
+					<p className="hover:text-blue-500 cursor-pointer" onClick={() => input_setAction('delete')}>Eliminar</p>
+					<p className="hover:text-blue-500 cursor-pointer" onClick={() => input_setAction('assign')}>Asignar Obra</p>
 				</div>
 			</td>
 		</tr>
