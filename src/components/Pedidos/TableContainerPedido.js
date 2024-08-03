@@ -2,14 +2,13 @@
 import '../globals.css'
 import DefaultTextInput from '../DefaultTextInput'
 import CircularButton from '../CircularButton'
-import DefaultRowCliente from '../Clientes/DefaultRowCliente'
+import DefaultRowPedido from '../Pedidos/DefaultRowPedido'
 import DefaultRowHeadPedido from '../Pedidos/DefaultRowHeadPedido'
 import { useEffect, useState, useRef} from 'react'
 //import DisplayAddCliente from './Add/DisplayAddCliente'
-//import DisplayModifyCliente from './Modify/DisplayModifyCliente'
+import DisplayModifyPedido from './Modify/DisplayModifyPedido'
 
 //<DisplayAddCliente ref={addDialog} input_setAction={setAction}/>
-//{clienteTarget !== undefined ?  <DisplayModifyCliente ref={modifyDialog} input_setAction={setAction} clienteTarget={clienteTarget}/> : null}
 
 export default function TableContainerPedido(){
     async function getPedidos(){ 
@@ -31,9 +30,7 @@ export default function TableContainerPedido(){
     action puede ser:
         -initial (no se hace nada, primera vez o se cancela la accion anterior)
         -add (agregar cliente)
-        -delete (eliminar cliente)
         -modify (modificar cliente)
-		-assign (asignar cliente)
     */
     const [action, setAction] = useState("initial");
 	const addDialog = useRef(null);
@@ -91,16 +88,17 @@ export default function TableContainerPedido(){
 							<DefaultRowHeadPedido numeroPedido='Numero' estado='Estado' cliente='Cliente' total='Total' acciones='Administrar'/> 
 						</thead>
 						<tbody>
-							{/*clientes?.map((cliente) => (
-								<DefaultRowCliente 
+							{pedidos?.map((pedido) => (
+								<DefaultRowPedido 
 								input_setAction={setAction}
-								cliente={cliente}
-								setClienteTarget={setClienteTarget}
-								key={cliente.id}/>
-							))*/}
+								pedido={pedido}
+								setPedidoTarget={setPedidoTarget}
+								key={pedido.id}/>
+							))}
 						</tbody>
 					</table>
 				</div>
+				{pedidoTarget !== undefined ?  <DisplayModifyPedido ref={modifyDialog} input_setAction={setAction} pedidoTarget={pedidoTarget}/> : null}
 			</div>
 		</div>
     );
